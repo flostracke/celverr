@@ -16,18 +16,17 @@ knitr::opts_chunk$set(
 # celverr
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![CRAN status](https://www.r-pkg.org/badges/version/celverr)](https://CRAN.R-project.org/package=celverr)
 <!-- badges: end -->
 
 The goal of celverr is to ...
 
 ## Installation
 
-You can install the development version of celverr like so:
+You can install the development version of celverr from [GitHub](https://github.com/) with:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+# install.packages("devtools")
+devtools::install_github("flostracke/celverr")
 ```
 
 ## Example
@@ -35,7 +34,7 @@ You can install the development version of celverr like so:
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-library(celverr)
+#library(celverr)
 ## basic example code
 ```
 
