@@ -1,12 +1,12 @@
 Package: celverr
-Title: What the Package Does (One Line, Title Case)
+Title: Usefull collections of R functions from celver
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Florian", "Stracke", , "f.stracke@celver.com", role = c("aut", "cre"))
+Description: Some useful functions out of our projects. Focus is mainly on forecasting
 License: MIT + file LICENSE
 Suggests: 
+    covr,
     roxygen2,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
