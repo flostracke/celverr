@@ -2,7 +2,7 @@
 % Please edit documentation in R/rmsle.R
 \name{rmsle}
 \alias{rmsle}
-\title{Root mean squared error}
+\title{Root mean squared log error}
 \usage{
 rmsle(data, ...)
 }
