@@ -17,4 +17,5 @@ URL: https://github.com/flostracke/celverr
 BugReports: https://github.com/flostracke/celverr/issues
 Imports: 
     rlang (>= 0.4.11),
+    tibble,
     yardstick
