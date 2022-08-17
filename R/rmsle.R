@@ -38,11 +38,7 @@
 #'
 #' @export
 #'
-rmsle <- function(data, ...) {
-  UseMethod("rmsle")
-}
 
-rmsle <- yardstick::new_numeric_metric(rmsle, direction = "minimize")
 
 
 #' Root Mean Squared Log Error
@@ -92,9 +88,16 @@ rmsle_vec <- function(truth, estimate, na_rm = TRUE, ...) {
 
 }
 
+rmsle <- function(data, ...) {
+  UseMethod("rmsle")
+}
+
+#' @export
+rmsle <- yardstick::new_numeric_metric(rmsle, direction = "minimize")
+
 rmsle.data.frame <- function(data, truth, estimate, na_rm = TRUE, ...) {
 
-  metric_summarizer(
+  yardstick::metric_summarizer(
     metric_nm = "rmsle",
     metric_fn = rmsle_vec,
     data = data,

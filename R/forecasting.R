@@ -1,3 +1,15 @@
+#' Title
+#'
+#' @param modellist
+#' @param cv_plan
+#' @param forecast_horizon
+#' @param train_data
+#' @param use_parallel
+#'
+#' @return
+#' @export
+#'
+#' @examples
 fcst_local_models_groups <- function(
     modellist,
     cv_plan,

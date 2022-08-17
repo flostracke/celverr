@@ -2,7 +2,7 @@
 % Please edit documentation in R/rmsle.R
 \name{rmsle_vec}
 \alias{rmsle_vec}
-\title{Root Mean Squared Log Error}
+\title{Root mean squared log error}
 \usage{
 rmsle_vec(truth, estimate, na_rm = TRUE, ...)
 }
@@ -23,11 +23,24 @@ values should be stripped before the computation proceeds.}
 
 \item{...}{Not currently used.}
 
+\item{case_weights}{The optional column identifier for case weights. This
+should be an unquoted column name that evaluates to a numeric column in
+\code{data}. For \verb{_vec()} functions, a numeric vector.}
+
 \item{data}{A \code{data.frame} containing the columns specified by the \code{truth}
 and \code{estimate} arguments.}
 }
 \description{
-Same like \code{rmsle} but for vectors.
+Calculate the root mean squared log error. In the case of RMSE, the presence
+of outliers can explode the error term to a very high value. But, in the
+case of RMLSE the outliers are drastically scaled down therefore nullifying
+their effect. RMSLE incurs a larger penalty for the underestimation of the
+Actual variable than the Overestimation. This is especially useful for
+business cases where the underestimation of the target variable is not
+acceptable but overestimation can be tolerated.
+}
+\details{
+For reference check this explanation: https://medium.com/analytics-vidhya/root-mean-square-log-error-rmse-vs-rmlse-935c6cc1802a
 }
 \author{
 Florian Stracke
