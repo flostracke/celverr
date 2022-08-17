@@ -88,11 +88,12 @@ rmsle_vec <- function(truth, estimate, na_rm = TRUE, ...) {
 
 }
 
+#' @export
 rmsle <- function(data, ...) {
   UseMethod("rmsle")
 }
 
-#' @export
+
 rmsle <- yardstick::new_numeric_metric(rmsle, direction = "minimize")
 
 rmsle.data.frame <- function(data, truth, estimate, na_rm = TRUE, ...) {
