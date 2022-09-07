@@ -14,7 +14,7 @@ fcst_local_models_groups(
 )
 }
 \arguments{
-\item{inner_loop_var}{}
+\item{inner_loop_var}{Used for optimising memory usage. Data is chunked by this variable.}
 }
 \description{
 Title

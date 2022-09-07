@@ -5,7 +5,7 @@
 #' @param forecast_horizon
 #' @param train_data
 #' @param use_parallel
-#' @param inner_loop_var
+#' @param inner_loop_var Used for optimising memory usage. Data is chunked by this variable.
 #'
 #' @return
 #' @export
@@ -51,9 +51,9 @@ fcst_local_models_groups <- function(
         dplyr::filter({{inner_loop_var}} == current_inner_loop_id)
 
       current_dates_oos <- current_train %>%
-        summarise(min = min(date), max = max(date))
+        dplyr::summarise(min = min(date), max = max(date))
 
-      print(glue("Current Split: {current_split_id}; Current Inner Loop: {current_inner_loop_id}; Train: {current_dates_train$min} - {current_dates_train$max}; Out Of Sample: {current_dates_oos$min} - {current_dates_oos$max} "))
+      print(glue::glue("Current Split: {current_split_id}; Current Inner Loop: {current_inner_loop_id}; Train: {current_dates_train$min} - {current_dates_train$max}; Out Of Sample: {current_dates_oos$min} - {current_dates_oos$max} "))
 
       # now we have filtered the data for the current slice and the current inner
       # loop and can prepare it for forecasting
@@ -80,7 +80,7 @@ fcst_local_models_groups <- function(
       current_inner_forecats <- nested_modeltime_tbl %>%
         modeltime::extract_nested_test_forecast(.include_actual = FALSE) %>%
         dplyr::mutate(id = current_split_id) %>%
-        rename(date = .index)
+        dplyr::rename(date = .index)
 
 
       slice_forecasts <- slice_forecasts %>%
@@ -132,7 +132,7 @@ fcst_local_models_groups <- function(
       prediction = .value
     ) %>%
     dplyr::left_join(
-      tbl_train %>% dplyr::select(date, series_id, value),
+      train_data %>% dplyr::select(date, series_id, value),
       by = c("date", "series_id")
     )
 

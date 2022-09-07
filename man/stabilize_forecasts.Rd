@@ -4,10 +4,12 @@
 \alias{stabilize_forecasts}
 \title{Averages non determistic forecast models}
 \usage{
-stabilize_forecasts(model_table, n_iterations = 10)
+stabilize_forecasts(model_table, out_of_sample_data, n_iterations = 10)
 }
 \arguments{
 \item{model_table}{A modeltime table with the trained models.}
+
+\item{out_of_sample_data}{The data which should be forecasted.}
 
 \item{n_iterations}{Number of how many forecasts are averaged.}
 }

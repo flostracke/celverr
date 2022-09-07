@@ -3,7 +3,7 @@ Title: Usefull collections of R functions from celver
 Version: 0.0.0.9000
 Authors@R: 
     person("Florian", "Stracke", , "f.stracke@celver.com", role = c("aut", "cre"))
-Description: Some useful functions out of our projects. Focus is mainly on forecasting
+Description: Some useful functions out of our projects. Focus is mainly on forecasting.
 License: MIT + file LICENSE
 Suggests: 
     covr,
@@ -16,8 +16,13 @@ RoxygenNote: 7.2.1
 URL: https://github.com/flostracke/celverr
 BugReports: https://github.com/flostracke/celverr/issues
 Imports: 
+    dplyr,
+    glue,
+    magrittr,
     modeltime,
     rlang (>= 0.4.11),
     rsample,
+    stringr,
     tibble,
+    tidyr,
     yardstick

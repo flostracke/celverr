@@ -3,13 +3,14 @@
 #' If the created forecasts of a forecast function are not deterministic this function creates a mean ensemble of ```n_iterations```.
 #'
 #' @param model_table A modeltime table with the trained models.
+#' @param out_of_sample_data The data which should be forecasted.
 #' @param n_iterations Number of how many forecasts are averaged.
 #'
 #' @return The summarised forecast as a tibble.
 #' @export
 #'
 #' @examples
-stabilize_forecasts <- function(model_table, n_iterations = 10) {
+stabilize_forecasts <- function(model_table, out_of_sample_data, n_iterations = 10) {
 
   all_forecasts <- tibble::tibble()
 
@@ -17,7 +18,7 @@ stabilize_forecasts <- function(model_table, n_iterations = 10) {
 
     print(glue::glue("current iteration: {i} / {n_iterations}"))
     current_forecasts <- model_table %>%
-      modeltime::modeltime_forecast(tbl_oos, keep_data = TRUE)
+      modeltime::modeltime_forecast(out_of_sample_data, keep_data = TRUE)
 
     all_forecasts <- dplyr::bind_rows(all_forecasts, current_forecasts)
   }
@@ -70,6 +71,8 @@ guarante_output <- function(x, type = "validation") {
 #' @return The dataframe with the cleaned model names.
 #'
 #' @examples
+#' @export
+
 fix_model_names <- function(x) {
 
   x %>%

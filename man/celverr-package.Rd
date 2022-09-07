@@ -6,7 +6,7 @@
 \alias{celverr-package}
 \title{celverr: Usefull collections of R functions from celver}
 \description{
-Some useful functions out of our projects. Focus is mainly on forecasting
+Some useful functions out of our projects. Focus is mainly on forecasting.
 }
 \seealso{
 Useful links:
