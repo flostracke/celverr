@@ -2,12 +2,9 @@
 % Please edit documentation in R/rmsle.R
 \name{rmsle_vec}
 \alias{rmsle_vec}
-\alias{rmsle}
 \title{Root mean squared log error}
 \usage{
 rmsle_vec(truth, estimate, na_rm = TRUE, ...)
-
-rmsle(data, ...)
 }
 \arguments{
 \item{truth}{The column identifier for the true results
@@ -25,8 +22,6 @@ unquoted variable name. For \verb{_vec()} functions, a \code{numeric} vector.}
 values should be stripped before the computation proceeds.}
 
 \item{...}{Not currently used.}
-
-\item{data}{The dataframe which stores the predictions and the actuals.}
 }
 \description{
 Calculate the root mean squared log error. In the case of RMSE, the presence
