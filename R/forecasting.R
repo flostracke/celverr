@@ -5,6 +5,7 @@
 #' @param forecast_horizon
 #' @param train_data
 #' @param use_parallel
+#' @param inner_loop_var
 #'
 #' @return
 #' @export
@@ -15,11 +16,14 @@ fcst_local_models_groups <- function(
     cv_plan,
     forecast_horizon,
     train_data,
-    use_parallel = TRUE
+    use_parallel = TRUE,
+    inner_loop_var
 ) {
 
+
+
   inner_loop_ids <- train_data %>%
-    dplyr::distinct(store_nbr) %>% # TODO make this a parameter
+    dplyr::distinct({{inner_loop_var}}) %>%
     dplyr::pull()
 
   all_forecasts <- tibble::tibble()
@@ -37,14 +41,14 @@ fcst_local_models_groups <- function(
 
       current_train <- current_slice$splits[[1]] %>%
         rsample::training() %>%
-        dplyr::filter(store_nbr == current_inner_loop_id)
+        dplyr::filter({{inner_loop_var}} == current_inner_loop_id)
 
       current_dates_train <- current_train %>%
         dplyr::summarise(min = min(date), max = max(date))
 
       current_oos <- current_slice$splits[[1]] %>%
         rsample::assessment() %>%
-        dplyr::filter(store_nbr == current_inner_loop_id)
+        dplyr::filter({{inner_loop_var}} == current_inner_loop_id)
 
       current_dates_oos <- current_train %>%
         summarise(min = min(date), max = max(date))

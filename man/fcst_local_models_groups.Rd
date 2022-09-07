@@ -9,11 +9,12 @@ fcst_local_models_groups(
   cv_plan,
   forecast_horizon,
   train_data,
-  use_parallel = TRUE
+  use_parallel = TRUE,
+  inner_loop_var
 )
 }
 \arguments{
-\item{use_parallel}{}
+\item{inner_loop_var}{}
 }
 \description{
 Title
