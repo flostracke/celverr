@@ -14,6 +14,16 @@ fcst_local_models_groups(
 )
 }
 \arguments{
+\item{modellist}{A list of modeltime workflows.}
+
+\item{cv_plan}{A split object created by \code{modeltime.resample::time_series_cv}}
+
+\item{forecast_horizon}{Number of timestamps we have to forecast}
+
+\item{train_data}{The used training data for adding back the features.}
+
+\item{use_parallel}{Should parallel processing be used.}
+
 \item{inner_loop_var}{Used for optimising memory usage. Data is chunked by this variable.}
 }
 \description{

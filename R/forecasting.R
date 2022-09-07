@@ -1,10 +1,10 @@
 #' Title
 #'
-#' @param modellist
-#' @param cv_plan
-#' @param forecast_horizon
-#' @param train_data
-#' @param use_parallel
+#' @param modellist A list of modeltime workflows.
+#' @param cv_plan A split object created by ```modeltime.resample::time_series_cv```
+#' @param forecast_horizon Number of timestamps we have to forecast
+#' @param train_data The used training data for adding back the features.
+#' @param use_parallel Should parallel processing be used.
 #' @param inner_loop_var Used for optimising memory usage. Data is chunked by this variable.
 #'
 #' @return

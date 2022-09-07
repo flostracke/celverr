@@ -11,9 +11,6 @@
 #'
 #' For reference check this explanation: https://medium.com/analytics-vidhya/root-mean-square-log-error-rmse-vs-rmlse-935c6cc1802a
 #'
-#' @param data A `data.frame` containing the columns specified by the `truth`
-#' and `estimate` arguments.
-#'
 #' @param truth The column identifier for the true results
 #' (that is `numeric`). This should be an unquoted column name although
 #' this argument is passed by expression and supports
@@ -27,10 +24,6 @@
 #'
 #' @param na_rm A `logical` value indicating whether `NA`
 #' values should be stripped before the computation proceeds.
-#'
-#' @param case_weights The optional column identifier for case weights. This
-#' should be an unquoted column name that evaluates to a numeric column in
-#' `data`. For `_vec()` functions, a numeric vector.
 #'
 #' @param ... Not currently used.
 #'
@@ -58,7 +51,8 @@ rmsle_vec <- function(truth, estimate, na_rm = TRUE, ...) {
 
 }
 
-#' @export
+#' @rdname rmsle_vec
+#' @param  data The dataframe which stores the predictions and the actuals.
 rmsle <- function(data, ...) {
   UseMethod("rmsle")
 }
