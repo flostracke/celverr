@@ -23,12 +23,12 @@ values should be stripped before the computation proceeds.}
 
 \item{...}{Not currently used.}
 
+\item{data}{A \code{data.frame} containing the columns specified by the \code{truth}
+and \code{estimate} arguments.}
+
 \item{case_weights}{The optional column identifier for case weights. This
 should be an unquoted column name that evaluates to a numeric column in
 \code{data}. For \verb{_vec()} functions, a numeric vector.}
-
-\item{data}{A \code{data.frame} containing the columns specified by the \code{truth}
-and \code{estimate} arguments.}
 }
 \description{
 Calculate the root mean squared log error. In the case of RMSE, the presence

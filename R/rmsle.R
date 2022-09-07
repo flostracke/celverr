@@ -38,36 +38,6 @@
 #'
 #' @export
 #'
-
-
-
-#' Root Mean Squared Log Error
-#'
-#' Same like `rmsle` but for vectors.
-#'
-#' @param data A `data.frame` containing the columns specified by the `truth`
-#' and `estimate` arguments.
-#'
-#' @param truth The column identifier for the true results
-#' (that is `numeric`). This should be an unquoted column name although
-#' this argument is passed by expression and supports
-#' [quasiquotation][rlang::quasiquotation] (you can unquote column
-#' names). For `_vec()` functions, a `numeric` vector.
-#'
-#' @param estimate The column identifier for the predicted
-#' results (that is also `numeric`). As with `truth` this can be
-#' specified different ways but the primary method is to use an
-#' unquoted variable name. For `_vec()` functions, a `numeric` vector.
-#'
-#' @param na_rm A `logical` value indicating whether `NA`
-#' values should be stripped before the computation proceeds.
-#'
-#' @param ... Not currently used.
-#'
-#' @author Florian Stracke
-#'
-#' @export
-#'
 rmsle_vec <- function(truth, estimate, na_rm = TRUE, ...) {
 
   rmsle_impl <- function(truth, estimate) {

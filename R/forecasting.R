@@ -100,7 +100,7 @@ fcst_local_models_groups <- function(
           ) %>%
           modeltime::extract_nested_future_forecast() %>%
           dplyr::filter(.model_desc != "ACTUAL") %>%
-          fix_model_names()
+          celverr::fix_model_names()
         modeltime::parallel_stop()
 
         oos_forecasts <- oos_forecasts %>%
