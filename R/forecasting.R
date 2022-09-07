@@ -60,9 +60,20 @@ fcst_local_models_groups <- function(
 
       tbl_ts_nested <- current_train %>%
         dplyr::bind_rows(current_oos) %>%
-        modeltime::extend_timeseries(.date_var = date, .id_var = series_id, .length_future = forecast_horizon) %>%
-        modeltime::nest_timeseries(.id_var = series_id, .length_future = forecast_horizon) %>%
-        modeltime::split_nested_timeseries(.id_var = series_id, .date_var = date, .length_test = forecast_horizon)
+        modeltime::extend_timeseries(
+          .date_var = date,
+          .id_var = series_id,
+          .length_future = forecast_horizon
+        ) %>%
+        modeltime::nest_timeseries(
+          .id_var = series_id,
+          .length_future = forecast_horizon
+        ) %>%
+        modeltime::split_nested_timeseries(
+          .id_var = series_id,
+          .date_var = date,
+          .length_test = forecast_horizon
+        )
 
       modeltime::parallel_start(parallel::detectCores() - 1)
       # fit the models
