@@ -2,17 +2,35 @@
 % Please edit documentation in R/rmsle.R
 \name{rmsle}
 \alias{rmsle}
+\alias{rmsle.data.frame}
+\alias{rmsle_vec}
 \title{Root mean squared log error}
 \usage{
 rmsle(data, ...)
+
+\method{rmsle}{data.frame}(data, truth, estimate, na_rm = TRUE, ...)
+
+rmsle_vec(truth, estimate, na_rm = TRUE, ...)
 }
 \arguments{
-\item{data}{The data frame containing the predictions and the actual values}
+\item{data}{A \code{data.frame} containing the columns specified by the \code{truth}
+and \code{estimate} arguments.}
 
-\item{...}{currently not used}
-}
-\value{
-the calculated metric
+\item{...}{Not currently used.}
+
+\item{truth}{The column identifier for the true results
+(that is \code{numeric}). This should be an unquoted column name although
+this argument is passed by expression and supports
+\link[rlang:topic-inject]{quasiquotation} (you can unquote column
+names). For \verb{_vec()} functions, a \code{numeric} vector.}
+
+\item{estimate}{The column identifier for the predicted
+results (that is also \code{numeric}). As with \code{truth} this can be
+specified different ways but the primary method is to use an
+unquoted variable name. For \verb{_vec()} functions, a \code{numeric} vector.}
+
+\item{na_rm}{A \code{logical} value indicating whether \code{NA}
+values should be stripped before the computation proceeds.}
 }
 \description{
 Calculate the root mean squared log error. In the case of RMSE, the presence
@@ -25,4 +43,7 @@ acceptable but overestimation can be tolerated.
 }
 \details{
 For reference check this explanation: https://medium.com/analytics-vidhya/root-mean-square-log-error-rmse-vs-rmlse-935c6cc1802a
+}
+\author{
+Florian Stracke
 }

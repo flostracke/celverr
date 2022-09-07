@@ -11,6 +11,9 @@
 #'
 #' For reference check this explanation: https://medium.com/analytics-vidhya/root-mean-square-log-error-rmse-vs-rmlse-935c6cc1802a
 #'
+#' @param data A `data.frame` containing the columns specified by the `truth`
+#' and `estimate` arguments.
+#'
 #' @param truth The column identifier for the true results
 #' (that is `numeric`). This should be an unquoted column name although
 #' this argument is passed by expression and supports
@@ -31,6 +34,30 @@
 #'
 #' @export
 #'
+rmsle <- function(data, ...) {
+  UseMethod("rmsle")
+}
+
+rmsle <- yardstick::new_numeric_metric(rmsle, direction = "minimize")
+
+#' @export
+#' @rdname rmsle
+rmsle.data.frame <- function(data, truth, estimate, na_rm = TRUE, ...) {
+
+  yardstick::metric_summarizer(
+    metric_nm = "rmsle",
+    metric_fn = rmsle_vec,
+    data = data,
+    truth = !!enquo(truth),
+    estimate = !!enquo(estimate),
+    na_rm = na_rm,
+    ...
+  )
+
+}
+
+#' @export
+#' @rdname rmsle
 rmsle_vec <- function(truth, estimate, na_rm = TRUE, ...) {
 
   rmsle_impl <- function(truth, estimate) {
@@ -52,42 +79,10 @@ rmsle_vec <- function(truth, estimate, na_rm = TRUE, ...) {
 }
 
 
-#' Root mean squared log error
-#'
-#' Calculate the root mean squared log error. In the case of RMSE, the presence
-#' of outliers can explode the error term to a very high value. But, in the
-#' case of RMLSE the outliers are drastically scaled down therefore nullifying
-#' their effect. RMSLE incurs a larger penalty for the underestimation of the
-#' Actual variable than the Overestimation. This is especially useful for
-#' business cases where the underestimation of the target variable is not
-#' acceptable but overestimation can be tolerated.
-#'
-#' For reference check this explanation: https://medium.com/analytics-vidhya/root-mean-square-log-error-rmse-vs-rmlse-935c6cc1802a
-#'
-#' @param data The data frame containing the predictions and the actual values
-#' @param ... currently not used
-#'
-#' @return the calculated metric
-#' @export
-#'
-#' @examples
-rmsle <- function(data, ...) {
-  UseMethod("rmsle")
-}
 
 
-rmsle <- yardstick::new_numeric_metric(rmsle, direction = "minimize")
 
-rmsle.data.frame <- function(data, truth, estimate, na_rm = TRUE, ...) {
 
-  yardstick::metric_summarizer(
-    metric_nm = "rmsle",
-    metric_fn = rmsle_vec,
-    data = data,
-    truth = !! enquo(truth),
-    estimate = !! enquo(estimate),
-    na_rm = na_rm,
-    ...
-  )
 
-}
+
+
