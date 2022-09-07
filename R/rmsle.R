@@ -53,6 +53,7 @@ rmsle_vec <- function(truth, estimate, na_rm = TRUE, ...) {
 
 #' @rdname rmsle_vec
 #' @param  data The dataframe which stores the predictions and the actuals.
+#' @export
 rmsle <- function(data, ...) {
   UseMethod("rmsle")
 }
