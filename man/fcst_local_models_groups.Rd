@@ -2,7 +2,7 @@
 % Please edit documentation in R/forecasting.R
 \name{fcst_local_models_groups}
 \alias{fcst_local_models_groups}
-\title{Title}
+\title{Function for creating forecastis for multiple timeseries with local models.}
 \usage{
 fcst_local_models_groups(
   modellist,
@@ -27,5 +27,5 @@ fcst_local_models_groups(
 \item{inner_loop_var}{Used for optimising memory usage. Data is chunked by this variable.}
 }
 \description{
-Title
+Function for creating forecastis for multiple timeseries with local models.
 }

@@ -13,5 +13,7 @@ fix_model_names(x)
 The dataframe with the cleaned model names.
 }
 \description{
-The ETS models and the TBATS models don't have consistet naming. The functions ensures that all ETS models are called ETS and all BATS models are called TBATS.
+The ETS models and the TBATS models don't have consistet naming. The f
+unctions ensures that all ETS models are called ETS and all BATS models are
+called TBATS.
 }

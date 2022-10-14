@@ -7,9 +7,11 @@
 combine_splits_and_preds(split_obj, fit_resamples_res)
 }
 \arguments{
-\item{split_obj}{A split object created by \code{modeltime.resample::time_series_cv}}
+\item{split_obj}{A split object created by
+\code{modeltime.resample::time_series_cv}}
 
-\item{fit_resamples_res}{The fitted resamples produced by ````modeltime::modeltime_fit_resamples``}
+\item{fit_resamples_res}{The fitted resamples produced by
+````modeltime::modeltime_fit_resamples``}
 }
 \value{
 The combined forecasts with the split object.

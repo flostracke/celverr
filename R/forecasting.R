@@ -1,4 +1,4 @@
-#' Title
+#' Function for creating forecastis for multiple timeseries with local models.
 #'
 #' @param modellist A list of modeltime workflows.
 #' @param cv_plan A split object created by ```modeltime.resample::time_series_cv```

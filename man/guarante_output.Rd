@@ -10,7 +10,8 @@ guarante_output(x, type = "validation")
 \arguments{
 \item{x}{The dataframe with the produced forecasts.}
 
-\item{type}{Can be "validation" or "forecast". There are minor differences in the expected columns between the 2 types.}
+\item{type}{Can be "validation" or "forecast". There are minor differences
+in the expected columns between the 2 types.}
 }
 \value{
 The dataframe with the needed columns

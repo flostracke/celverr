@@ -17,5 +17,6 @@ stabilize_forecasts(model_table, out_of_sample_data, n_iterations = 10)
 The summarised forecast as a tibble.
 }
 \description{
-If the created forecasts of a forecast function are not deterministic this function creates a mean ensemble of \code{n_iterations}.
+If the created forecasts of a forecast function are not deterministic this
+function creates a mean ensemble of \code{n_iterations}.
 }

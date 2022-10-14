@@ -1,6 +1,7 @@
 #' Averages non determistic forecast models
 #'
-#' If the created forecasts of a forecast function are not deterministic this function creates a mean ensemble of ```n_iterations```.
+#' If the created forecasts of a forecast function are not deterministic this
+#' function creates a mean ensemble of ```n_iterations```.
 #'
 #' @param model_table A modeltime table with the trained models.
 #' @param out_of_sample_data The data which should be forecasted.
@@ -10,11 +11,14 @@
 #' @export
 #'
 #' @examples
-stabilize_forecasts <- function(model_table, out_of_sample_data, n_iterations = 10) {
+stabilize_forecasts <- function(
+  model_table,
+  out_of_sample_data,
+  n_iterations = 10) {
 
   all_forecasts <- tibble::tibble()
 
-  for(i in 1:n_iterations) {
+  for (i in 1:n_iterations) {
 
     print(glue::glue("current iteration: {i} / {n_iterations}"))
     current_forecasts <- model_table %>%
@@ -39,7 +43,8 @@ stabilize_forecasts <- function(model_table, out_of_sample_data, n_iterations = 
 #' downstream useage. This function checks the data format.
 #'
 #' @param x The dataframe with the produced forecasts.
-#' @param type Can be "validation" or "forecast". There are minor differences in the expected columns between the 2 types.
+#' @param type Can be "validation" or "forecast". There are minor differences
+#' in the expected columns between the 2 types.
 #'
 #' @return The dataframe with the needed columns
 #' @export
@@ -47,12 +52,12 @@ stabilize_forecasts <- function(model_table, out_of_sample_data, n_iterations = 
 #' @examples
 guarante_output <- function(x, type = "validation") {
 
-  if(type == "validation") {
+  if (type == "validation") {
     result <- x %>%
       dplyr::select(date, series_id, .model_desc, prediction, value, id)
   }
 
-  if(type == "forecast") {
+  if (type == "forecast") {
     result <- x %>%
       dplyr::select(date, series_id, .model_desc, prediction)
   }
@@ -64,7 +69,9 @@ guarante_output <- function(x, type = "validation") {
 
 #' Cleans some names of some forecasting models.
 #'
-#' The ETS models and the TBATS models don't have consistet naming. The functions ensures that all ETS models are called ETS and all BATS models are called TBATS.
+#' The ETS models and the TBATS models don't have consistet naming. The f
+#' unctions ensures that all ETS models are called ETS and all BATS models are
+#' called TBATS.
 #'
 #' @param x The dataframe with the produced forecasts.
 #'
@@ -76,15 +83,24 @@ guarante_output <- function(x, type = "validation") {
 fix_model_names <- function(x) {
 
   x %>%
-    dplyr::mutate(.model_desc = dplyr::if_else(stringr::str_detect(.model_desc, pattern = "ETS"), "ETS", .model_desc)) %>%
-    dplyr::mutate(.model_desc = dplyr::if_else(stringr::str_detect(.model_desc, pattern = "BATS "), "TBATS", .model_desc))
+    dplyr::mutate(.model_desc = dplyr::if_else(
+      stringr::str_detect(.model_desc, pattern = "ETS"),
+      "ETS",
+      .model_desc)) %>%
+    dplyr::mutate(.model_desc = dplyr::if_else(
+      stringr::str_detect(.model_desc, pattern = "BATS "),
+      "TBATS",
+      .model_desc)
+    )
 
 }
 
 #' Combine the validation forecasts with the split object.
 #'
-#' @param split_obj A split object created by ```modeltime.resample::time_series_cv```
-#' @param fit_resamples_res The fitted resamples produced by ````modeltime::modeltime_fit_resamples``
+#' @param split_obj A split object created by
+#' ```modeltime.resample::time_series_cv```
+#' @param fit_resamples_res The fitted resamples produced by
+#' ````modeltime::modeltime_fit_resamples``
 #'
 #' @return The combined forecasts with the split object.
 #' @export
@@ -120,8 +136,11 @@ combine_splits_and_preds <- function(
     data_for_current_split_asses <- current_slice$splits[[1]] %>%
       rsample::assessment()
 
-    data_for_current_split <- dplyr::bind_rows(data_for_current_split_train, data_for_current_split_asses) %>%
-      dplyr::mutate(.row = dplyr::row_number())
+    data_for_current_split <- dplyr::bind_rows(
+      data_for_current_split_train,
+      data_for_current_split_asses
+    ) %>%
+    dplyr::mutate(.row = dplyr::row_number())
 
     # combine the extracted data with the predictions
     combined_data_current_split <- current_predictions %>%
