@@ -53,7 +53,7 @@ choose_best_method <- function(
       best_method_per_group,
       by = c(group_name, ".model_desc")
     ) %>%
-    mutate(.model_desc = glue("best_method_per_{group_name}"))
+    dplyr::mutate(.model_desc = glue::glue("best_method_per_{group_name}"))
 
   return(
     list(

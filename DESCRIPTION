@@ -22,6 +22,7 @@ Imports:
     modeltime,
     rlang (>= 0.4.11),
     rsample,
+    stringi,
     stringr,
     tibble,
     tidyr,
