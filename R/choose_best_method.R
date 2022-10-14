@@ -34,7 +34,7 @@ choose_best_method <- function(
     dplyr::group_by(.model_desc, {{group_col}}) %>%
     metric(value, prediction) %>%
     dplyr::group_by({{group_col}}) %>%
-    dplyr::slice_min(order_by = .estimate, with_ties = FALSE) %>%
+    dplyr::slice_min(order_by = .data$.estimate, with_ties = FALSE) %>%
     dplyr::ungroup() %>%
     dplyr::select(.model_desc, {{group_col}})
 

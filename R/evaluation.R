@@ -21,7 +21,7 @@ eval_validation_set <- function(
   # check if all models have the same number of forecasts
   n_lengths <- forecasts_resamples %>%
     dplyr::count(.model_desc) %>%
-    dplyr::distinct(n) %>%
+    dplyr::distinct(.data$n) %>%
     dplyr::pull() %>%
     length()
 
@@ -30,18 +30,21 @@ eval_validation_set <- function(
   if(nr_forecasts_equal) {
 
     metrics <- forecasts_resamples %>%
-      group_by(.model_desc, {{group_col}}) %>%
+      dplyr::group_by(.model_desc, {{group_col}}) %>%
       metricset(truth = value, estimate = prediction) %>%
-      arrange(.estimate) %>%
-      select(-.estimator)  %>%
-      pivot_wider(names_from = .metric, values_from = .estimate)
+      dplyr::arrange(.data$.estimate) %>%
+      dplyr::select(-.data$.estimator)  %>%
+      tidyr::pivot_wider(
+        names_from = .data$.metric,
+        values_from = .data$.estimate
+      )
 
     return(metrics)
 
 
   } else {
     print("DIFFERENT FORECAST METHODS HAVE DIFFERENT NUMBER OF FORECASTS !!!")
-    print(count(forecasts_resamples, .model_desc))
+    print(dplyr::count(forecasts_resamples, .model_desc))
   }
 
 }
