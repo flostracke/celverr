@@ -46,13 +46,17 @@ choose_best_method <- function(
       best_method_per_group,
       by = c(group_name, ".model_desc")
     ) %>%
-    dplyr::mutate(.model_desc = glue::glue("best_method_per_{group_name}"))
+    dplyr::mutate(.model_desc_orig = .model_desc) %>%
+    dplyr::mutate(
+      .model_desc = glue::glue("best_method_per_{group_name}")
+    )
 
   best_forecasts_per_group_oos <- forecasts_oos %>%
     dplyr::inner_join(
       best_method_per_group,
       by = c(group_name, ".model_desc")
     ) %>%
+    dplyr::mutate(.model_desc_orig = .model_desc) %>%
     dplyr::mutate(.model_desc = glue::glue("best_method_per_{group_name}"))
 
   return(
