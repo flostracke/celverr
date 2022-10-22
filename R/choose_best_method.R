@@ -67,3 +67,32 @@ choose_best_method <- function(
   )
 
 }
+
+#' Plots the choosen models based on the validation ouput of `choose_best_method`
+#'
+#' @param best_method_val_results The output validation dataframe of `choose_best_method`
+#' @param subtitle specifiy the subtitle for the plot
+#'
+#' @return
+#' @export
+#'
+#' @examples
+plot_best_choosen_method <- function(best_method_val_results, subtitle = "") {
+
+  method_counts <- best_method_val_results %>%
+    dplyr::distinct(series_id, .data$.model_desc_orig) %>%
+    dplyr::count(.data$.model_desc_orig)
+
+  best_method_val_results %>%
+    dplyr::left_join(method_counts, by = ".model_desc_orig") %>%
+    dplyr::distinct(series_id, .data$.model_desc_orig, .data$n) %>%
+    ggplot2::ggplot(ggplot2::aes(forcats::fct_reorder(.data$.model_desc_orig, .data$n))) +
+    ggplot2::geom_bar(fill = "#3E606F") +
+    ggplot2::coord_flip() +
+    ggplot2::labs(
+      title = "Best choosen Forecasting Model",
+      x = "Forecasting Model",
+      subtitle = subtitle
+    )
+
+}
